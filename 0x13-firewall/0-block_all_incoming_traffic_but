@@ -1,8 +1,13 @@
-#!/usr/bin/env bash
-# Installs and setup firewall: ufw
+#!/bin/bash
+sudo apt-get update
+sudo apt-get -y install ufw
 
-apt-get -y install ufw
-ufw allow ssh
-ufw allow 80/tcp
-ufw allow 443/tcp
-ufw enable
+sudo sed -i "s/IPV6=no/IPV6=yes/" /etc/default/ufw
+sudo ufw default allow outgoing
+sudo ufw default deny incoming
+
+sudo ufw allow ssh
+sudo ufw allow https
+sudo ufw allow http
+
+sudo ufw enable

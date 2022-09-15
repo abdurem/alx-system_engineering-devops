@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-#prints a string 10 times
-x=0
-while [ $x -ne 10 ]
-do
-  echo "Holberton School"
-  x=$(( x + 1 ))
+# prints Holberton School 10x
+i=0
+n=10
+while ((i < n));do
+    echo "Holberton School"
+    ((i+=1))
 done

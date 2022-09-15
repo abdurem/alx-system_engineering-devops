@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# a more simplified debugging
+sudo mv /etc/nginx/sites-enabled/default /home/default.backup
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled
+sudo service nginx restart

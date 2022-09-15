@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-#prints a string 10 times
-
-number=0
-until [ $number -eq 10 ]
+# prints Holberton School 10x
+i=0
+n=9
+until ((i > n))
 do
-	echo "Holberton School"
-	number=$(( number + 1 ))
+    echo "Holberton School"
+    ((i+=1))
 done

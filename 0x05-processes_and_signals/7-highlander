@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
-# This script displays
-# to infinity and beyond indefinitely
-# With a sleep 2 in between each iteration
-# I am invincible!!! when receiving a SIGTERM signal
+# display indefinitely
+hexToAscii() {
+  # shellcheck disable=SC2059
+  printf "\x$1"
+}
+msg()
+{
+    echo "I am invincible!!!"
+}
+trap "msg" SIGTERM
 
-trap 'echo "I am invincible!!!"' 15
-while true; do
-    echo "to infinity and beyond"
+while ((1)); do
+    echo "To infinity and beyond"
     sleep 2
 done
