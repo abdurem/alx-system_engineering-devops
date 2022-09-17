@@ -1,19 +1,16 @@
-define accounts_global::account () {
+# ssh configuration
+include stdlib
 
-  account { $name:
-    ensure => present,
-  }
-  $mytext = "Host 3.238.113.90
-     PasswordAuthentication no
-     IdentityFile ~/.ssh/school"
+file_line { 'Turn off passwd auth':
+  ensure => present,
+  path   => '/etc/ssh/ssh_config',
+  line   => '    PasswordAuthentication no',
+  replace => true,
+}
 
-  file { "/home/${name}/.ssh/config" :
-    require => Account[$name],
-    owner   => $name,
-    group   => $name,
-    mode    => '0600',
-    ensure  => file,
-    path    => '/home/${name}/.ssh/config',
-    content => $mytext,
-  }
+file_line { 'Delare identity file':
+  ensure => present,
+  path   => '/etc/ssh/ssh_config',
+  line   => '     IdentityFile ~/.ssh/school',
+  replace => true,
 }
