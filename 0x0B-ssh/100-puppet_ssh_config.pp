@@ -3,7 +3,7 @@ define accounts_global::account () {
   account { $name:
     ensure => present,
   }
-  $mytext = "Host 34.75.72.161
+  $mytext = "Host 3.238.113.90
      PasswordAuthentication no
      IdentityFile ~/.ssh/school"
 
