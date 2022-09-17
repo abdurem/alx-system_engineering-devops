@@ -5,7 +5,7 @@ define accounts_global::account () {
   }
   $mytext = "Host 34.75.72.161
      PasswordAuthentication no
-     IdentityFile ~/.ssh/holberton"
+     IdentityFile ~/.ssh/school"
 
   file { "/home/${name}/.ssh/config" :
     require => Account[$name],
