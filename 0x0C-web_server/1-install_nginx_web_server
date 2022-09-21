@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
-# Install nginx on web server; Nginx should be listening on port 80
-# Querying Nginx at its root (/) with a GET request (requesting a page)
-# 	   curl http://35.229.54.225/   --> returns string "Holberton School"
-#	   curl http://35.229.54.225/   --> returns header info
-
+# Install nginx on web server setting it to listen on port 80
 sudo apt-get -y update
 sudo apt-get -y install nginx
-echo "Holberton School" | sudo tee /usr/share/nginx/html/index.html
-echo "Holberton School for the win!" | sudo tee /var/www/html/index.html
-sudo service nginx start
+sudo ufw allow "Nginx HTTP"
+sudo chown -R $USER:$USER /var/www/html/index.nginx-debian.html
+sudo echo "Hello World!" > /var/www/html/index.nginx-debian.html
+sudo service nginx restart
