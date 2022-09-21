@@ -7,7 +7,7 @@
 #	 ssh ubuntu@35.229.54.225 -i ~/.ssh/holberton 'ls ~/'
 
 if [ $# -lt 3 ]; then
-    echo "Usage: 0-transfer_file PATH_TO_FILE 3.235.21.95 ubuntu ~/"
+    echo "Usage: some_page.html PATH_TO_FILE 3.235.21.95 ubuntu ~/"
 else
     scp -o "StrictHostKeyChecking=no" -i "$4" "$1" "$3@$2":~/
 fi
