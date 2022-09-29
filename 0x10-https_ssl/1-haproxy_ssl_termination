@@ -36,7 +36,7 @@ defaults
 	errorfile 504 /etc/haproxy/errors/504.http
 
 listen load_balancer
-   bind *:80
+   bind :80
    mode http
    balance roundrobin
    option httpclose
@@ -45,8 +45,8 @@ listen load_balancer
    server 23539-web-02 3.234.211.38:80 check
 
 frontend www
-	bind *:80
-	bind *:443 ssl crt /etc/letsencrypt/live/abdurem.tech/all.pem
+	bind :80
+	bind :443 ssl crt /etc/letsencrypt/live/abdurem.tech/all.pem
 	use_backend www
 
 backend www
