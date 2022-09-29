@@ -49,7 +49,7 @@ frontend www
 
 backend www
 	balance roundrobin
-    option httpclose
+    	option httpclose
    	option forwardfor
 	server 23530-web-01 3.236.236.38:80 check
    	server 22825-web-02 3.234.211.38:80 check
