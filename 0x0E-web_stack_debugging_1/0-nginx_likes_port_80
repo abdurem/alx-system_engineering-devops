@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# Fixes Ngnix server
-new_string="listen 80 default_server;"
-old_string="listen 8080 default_server;"
-sudo sed -i "s/$old_string/$new_string/" /etc/nginx/sites-enabled/default
-sudo sed -i '22d' /etc/nginx/sites-enabled/default
-sudo service nginx start
+# Script that sets the port 80
+sed -i "s/listen 8080 default_server;/listen 80 default_server;/" /etc/nginx/sites-enabled/default
+sed -i "s/listen \[::\]:8080 default_server ipv6only=on;/listen \[::\]:80 default_server;/" /etc/nginx/sites-enabled/default
+sed -i "s/ ipv6only=on//" /etc/nginx/sites-available/default
+service nginx restart
