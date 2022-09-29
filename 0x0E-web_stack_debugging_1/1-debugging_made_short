@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# a more simplified debugging
-sudo mv /etc/nginx/sites-enabled/default /home/default.backup
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled
-sudo service nginx restart
+# Fixes Ngnix server
+sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
+sudo service nginx start
+kill "$(pgrep nginx | head -1)"
