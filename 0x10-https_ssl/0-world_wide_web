@@ -20,3 +20,4 @@ elif [ $# -eq 2 ]; then
     sub="$2"
     runDig "$sub" "$url"
 fi
+
