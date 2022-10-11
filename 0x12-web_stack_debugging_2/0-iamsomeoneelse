@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
-# who am i
-sudo -u "$1" whoami
+if [ $# = 1 ]
+then
+        sudo -H -u "$1" bash -c 'whoami' 
+elif [ $# = 0 ]
+then
+    whoami
+fi
