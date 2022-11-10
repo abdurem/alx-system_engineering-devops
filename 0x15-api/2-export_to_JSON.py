@@ -1,34 +1,29 @@
 #!/usr/bin/python3
-"""
-a script that
-returns information about his/her TODO list progress.
-"""
-import json
-import requests
-from sys import argv
+"""Exports data in the JSON format"""
 
+if __name__ == "__main__":
 
-def export_to_json():
-    """ returns information about his/her TODO list progress. """
-    user = (requests.get(
-        'http://jsonplaceholder.typicode.com/users?id={}'.format(
-            argv[1]))).json()
-    res = requests.get(
-        'https://jsonplaceholder.typicode.com/todos?userId={}'.format(argv[1]))
-    tasks = []
-    to_json = {}
-    userId = user[0].get('id')
-    username = user[0].get('username')
-    for todo in res.json():
-        dic_todo = {}
-        dic_todo['task'] = todo.get('title')
-        dic_todo['completed'] = todo.get('completed')
-        dic_todo['username'] = username
-        tasks.append(dic_todo)
-    to_json[userId] = tasks
-    with open('{}.json'.format(userId), 'w') as todo_file:
-        json.dump(to_json, todo_file)
+    import json
+    import requests
+    import sys
 
+    userId = sys.argv[1]
+    user = requests.get("https://jsonplaceholder.typicode.com/users/{}"
+                        .format(userId))
+    todos = requests.get('https://jsonplaceholder.typicode.com/todos')
+    todos = todos.json()
 
-if __name__ == '__main__':
-    export_to_json()
+    todoUser = {}
+    taskList = []
+
+    for task in todos:
+        if task.get('userId') == int(userId):
+            taskDict = {"task": task.get('title'),
+                        "completed": task.get('completed'),
+                        "username": user.json().get('username')}
+            taskList.append(taskDict)
+    todoUser[userId] = taskList
+
+    filename = userId + '.json'
+    with open(filename, mode='w') as f:
+        json.dump(todoUser, f)
